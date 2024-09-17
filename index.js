@@ -4,11 +4,19 @@ const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const passport = require('./config/auth');
 const flash = require('connect-flash');
+const cors = require('cors');
+
 
 const {sequelize, initializeDatabase} = require('./config/database');
 
 
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:4200', 
+  credentials: true
+}));
+
 
 // middlewares
 app.use(bodyParser.json());
@@ -31,9 +39,11 @@ initializeDatabase()
     // use routes
     const registerRouter = require('./routes/register');
     const authRouter = require('./routes/auth');
+    const profileRouter = require('./routes/profile');
 
     app.use('/', registerRouter);
     app.use('/', authRouter);
+    app.use('/', profileRouter);
 
     // fire server
     app.listen(3000, () => {
