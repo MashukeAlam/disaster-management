@@ -21,7 +21,7 @@ router.post('/login', (req, res, next) => {
 router.get('/logout', (req, res) => {
   req.logout((err) => {
     if (err) return next(err);
-    res.redirect('/');
+    res.status(200).json({ message: 'Logout successful' });
   });
 });
 

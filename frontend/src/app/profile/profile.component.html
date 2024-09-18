@@ -1,1 +1,10 @@
-<p>profile works!</p>
+<div *ngIf="user; else notAuthenticated">
+  <h1>Welcome, {{ user.username }}</h1>
+  <p>Email: {{ user.email }}</p>
+    
+  <button (click)="onLogout()">Logout</button>
+</div>
+
+<ng-template #notAuthenticated>
+  <p>You are not logged in. Please <a routerLink="/login">login</a>.</p>
+</ng-template>

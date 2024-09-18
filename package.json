@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "seed:admin": "node seed/seedAdmin.js"
+    "seed:admin": "node seed/admin.js",
+    "seed:item": "node seed/item.js"
 
   },
   "author": "MashukeAlam",

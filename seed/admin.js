@@ -1,6 +1,6 @@
 require('dotenv').config();
 const bcrypt = require('bcryptjs');
-const { User } = require('../models'); 
+const User = require('../models/User'); 
 
 async function seedAdmin() {
   try {
@@ -25,8 +25,10 @@ async function seedAdmin() {
     });
 
     console.log('Admin user created successfully.');
+    return;
   } catch (err) {
     console.error('Error seeding admin user:', err);
+    return;
   }
 }
 
