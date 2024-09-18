@@ -14,10 +14,10 @@
       <tr id="{{user.id}}" *ngFor="let user of users">
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
-        <td><input type="text" #task /></td>
+        <td><input [value]="assignments.get(user.id).task" type="text" #task placeholder="No task assigned." /></td>
         <td>
           <select #location>
-            <option *ngFor="let location of locations" [value]="location.id">
+            <option *ngFor="let location of locations" [value]="location.id" [selected]="assignments.get(user.id).locationId == location.id">
               {{ location.name }}
             </option>
           </select>

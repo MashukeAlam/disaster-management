@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Assignment  = require('../models/Assignment'); 
 
+// Get all assignments
+router.get('/assignments', async (req, res) => {
+  try {
+    const assignments = await Assignment.findAll();
+    res.status(200).json(assignments);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Update assignment
 router.put('/assignments/:id', async (req, res) => {
   const { id } = req.params;

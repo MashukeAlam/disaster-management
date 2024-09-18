@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AssignmentsService } from '../../assignments.service';
 
 @Component({
   selector: 'app-volunteer',
@@ -13,12 +14,14 @@ import { FormsModule } from '@angular/forms';
 export class VolunteerComponent implements OnInit {
   users: any[] = [];
   locations: any[] = [];
+  assignments: Map<number, any> = new Map<number, any>();
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private assignmentService: AssignmentsService) {}
 
   ngOnInit(): void {
       this.fetchUsers();
       this.fetchLocations();
+      this.getAssignments();
   }
 
   fetchUsers(): void {
@@ -46,6 +49,22 @@ export class VolunteerComponent implements OnInit {
         console.error('Error updating assignment', error);
       }
     );
+  }
+
+  getAssignments() {
+    this.assignmentService.getAssignments().subscribe(
+      (response) => {  
+        this.users.forEach((user: any) => {
+          this.assignments.set(user.id, {locationId: 1, task: ""});
+        });
+        response.forEach((assignment: any) => {
+          this.assignments.set(assignment.userId, assignment);
+        });        
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
   }
 
 }
