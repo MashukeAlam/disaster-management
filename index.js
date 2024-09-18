@@ -40,10 +40,12 @@ initializeDatabase()
     const registerRouter = require('./routes/register');
     const authRouter = require('./routes/auth');
     const profileRouter = require('./routes/profile');
+    const userRouter = require('./routes/user');
 
     app.use('/', registerRouter);
     app.use('/', authRouter);
     app.use('/', profileRouter);
+    app.use('/', userRouter);
 
     // fire server
     app.listen(3000, () => {

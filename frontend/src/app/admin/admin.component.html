@@ -1,10 +1,14 @@
-<h3>Admin Panel</h3>
 <div class="admin-container">
   <div class="sidebar">
-    <button routerLink="volunteer" routerLinkActive="active">Manage Volunteers</button>
-    <button routerLink="crisis" routerLinkActive="active">Manage Crises</button>
-    <button routerLink="report" routerLinkActive="active">Generate Reports</button>
+    <h3>Admin Panel</h3>
+    <button routerLink="volunteer" routerLinkActive="active">Volunteers</button>
+    <button routerLink="crisis" routerLinkActive="active">Crises</button>
+    <button routerLink="report" routerLinkActive="active">Reports</button>
+    <div *ngIf="user;">
+      <button class="btn btn-danger" (click)="onLogout()">Logout</button>
+    </div>
   </div>
+  
 
   <div class="content">
     <router-outlet></router-outlet> <!-- This will load the corresponding component based on the route -->

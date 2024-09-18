@@ -23,4 +23,8 @@ export class AuthService {
   isAuthenticated(): Observable<any> {
     return this.http.get(`${this.baseUrl}/profile`, { withCredentials: true });
   }
+
+  getNonAdminUsers(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/users`, { withCredentials: true });
+  }
 }
