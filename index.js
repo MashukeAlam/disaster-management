@@ -13,7 +13,7 @@ const { User, Donation, Crisis, Assignment, Location, Merchant, CrisisType, Inve
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:4200', 
+  origin: '*', 
   credentials: true
 }));
 
@@ -54,7 +54,7 @@ initializeDatabase()
     app.use('/', crisisRouter);
 
     // fire server
-    app.listen(3000, () => {
+    app.listen(3000, '0.0.0.0', () => {
       // sequelize.sync();
       console.log(`Server running on http://localhost:${3000}`);
     });

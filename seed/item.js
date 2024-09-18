@@ -1,11 +1,9 @@
-const sequelize = require('../config/database'); // adjust the path
+const {sequelize} = require('../config/database'); // adjust the path
 const Item = require('../models/Item');
 const Inventory = require('../models/Inventory');
 
 async function seedReliefSupplies() {
   try {
-    await sequelize.sync({ force: true }); 
-
     const reliefItems = [
       { name: 'Puffed Rice' },
       { name: 'Biscuits' },
