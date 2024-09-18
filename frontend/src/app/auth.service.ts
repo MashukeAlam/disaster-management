@@ -27,4 +27,8 @@ export class AuthService {
   getNonAdminUsers(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/users`, { withCredentials: true });
   }
+
+  getLocations(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/locations`, { withCredentials: false });
+  }
 }

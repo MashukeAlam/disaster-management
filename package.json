@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "seed:admin": "node seed/admin.js",
-    "seed:item": "node seed/item.js"
+    "seed:item": "node seed/item.js",
+    "seed:locations": "node seed/location.js"
+
 
   },
   "author": "MashukeAlam",

@@ -41,11 +41,13 @@ initializeDatabase()
     const authRouter = require('./routes/auth');
     const profileRouter = require('./routes/profile');
     const userRouter = require('./routes/user');
-
+    const locationRouter = require('./routes/location');
+    
     app.use('/', registerRouter);
     app.use('/', authRouter);
     app.use('/', profileRouter);
     app.use('/', userRouter);
+    app.use('/', locationRouter);
 
     // fire server
     app.listen(3000, () => {

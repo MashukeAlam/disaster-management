@@ -5,12 +5,22 @@
       <tr>
         <th>Username</th>
         <th>Email</th>
+        <th>Assigned Task</th>
+        <th>Location</th>
       </tr>
     </thead>
     <tbody>
       <tr id="{{user.id}}" *ngFor="let user of users">
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
+        <td><input type="text" [(ngModel)]="user.assignedTask" /></td>
+        <td>
+          <select [(ngModel)]="user.location">
+            <option *ngFor="let location of locations" [value]="location.name">
+              {{ location.name }}
+            </option>
+          </select>
+        </td>
       </tr>
     </tbody>
   </table>
