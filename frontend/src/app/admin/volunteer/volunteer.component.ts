@@ -37,4 +37,15 @@ export class VolunteerComponent implements OnInit {
     )
   }
 
+  updateAssignment(userId: number, assignedTask: string, location: string) {
+    this.authService.updateAssignment(userId, assignedTask, parseInt(location)).subscribe(
+      (response) => {
+        console.log('Assignment updated successfully', response);
+      },
+      (error) => {
+        console.error('Error updating assignment', error);
+      }
+    );
+  }
+
 }

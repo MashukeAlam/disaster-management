@@ -7,20 +7,22 @@
         <th>Email</th>
         <th>Assigned Task</th>
         <th>Location</th>
+        <th>Update</th>
       </tr>
     </thead>
     <tbody>
       <tr id="{{user.id}}" *ngFor="let user of users">
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
-        <td><input type="text" [(ngModel)]="user.assignedTask" /></td>
+        <td><input type="text" #task /></td>
         <td>
-          <select [(ngModel)]="user.location">
-            <option *ngFor="let location of locations" [value]="location.name">
+          <select #location>
+            <option *ngFor="let location of locations" [value]="location.id">
               {{ location.name }}
             </option>
           </select>
         </td>
+        <td><button (click)="updateAssignment(user.id, task.value, location.value)"  class="btn btn-warning">Update</button></td>
       </tr>
     </tbody>
   </table>

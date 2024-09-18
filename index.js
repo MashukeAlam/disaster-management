@@ -5,6 +5,7 @@ const session = require('express-session');
 const passport = require('./config/auth');
 const flash = require('connect-flash');
 const cors = require('cors');
+const Assignment = require('./models/Assignment');
 
 
 const {sequelize, initializeDatabase} = require('./config/database');
@@ -42,17 +43,19 @@ initializeDatabase()
     const profileRouter = require('./routes/profile');
     const userRouter = require('./routes/user');
     const locationRouter = require('./routes/location');
+    const assignmentRouter = require('./routes/assignment');
     
     app.use('/', registerRouter);
     app.use('/', authRouter);
     app.use('/', profileRouter);
     app.use('/', userRouter);
     app.use('/', locationRouter);
+    app.use('/', assignmentRouter);
 
     // fire server
     app.listen(3000, () => {
+      sequelize.sync();
       console.log(`Server running on http://localhost:${3000}`);
-      sequelize.sync({alter: true});
     });
   })
   .catch(err => {

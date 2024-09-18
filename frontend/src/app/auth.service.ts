@@ -31,4 +31,8 @@ export class AuthService {
   getLocations(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/locations`, { withCredentials: false });
   }
+
+  updateAssignment(userId: number, assignedTask: string, locationId: number): Observable<any> {
+    return this.http.put(`${this.baseUrl}/assignments/${userId}`, { assignedTask, locationId }, { withCredentials: true });
+  }
 }

@@ -23,6 +23,7 @@ async function seedAdmin() {
       username: adminData.username,
       email: adminData.email,
       password: hashedPassword,
+      isAdmin: adminData.isAdmin
     });
 
     console.log('Admin user created successfully.');
