@@ -36,8 +36,14 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
-        // On successful login, redirect to profile or other secured page
-        this.router.navigate(['/profile']);
+        console.log(response['user'].isAdmin);
+
+        if (response['user'].isAdmin) {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/profile']);
+        }
+        
       },
       (error) => {
         // Display error message if login fails

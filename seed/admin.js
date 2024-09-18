@@ -8,6 +8,7 @@ async function seedAdmin() {
       username: 'admin',
       email: 'admin@admin.com',
       password: 'admin123', 
+      isAdmin: true
     };
 
     const existingAdmin = await User.findOne({ where: { email: adminData.email } });

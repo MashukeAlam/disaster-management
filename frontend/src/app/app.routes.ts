@@ -2,6 +2,10 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
+import { VolunteerComponent } from './admin/volunteer/volunteer.component';
+import { CrisisComponent } from './admin/crisis/crisis.component';
+import { ReportComponent } from './admin/report/report.component';
 
 export const routes: Routes = [
   {
@@ -15,5 +19,14 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [
+      { path: 'volunteer', component: VolunteerComponent },
+      { path: 'crisis', component: CrisisComponent },
+      { path: 'report', component: ReportComponent }
+    ] 
   }
 ];

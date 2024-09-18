@@ -1,0 +1,33 @@
+.admin-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  height: 100vh; /* Full height */
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.sidebar button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.content {
+  padding: 20px;
+  flex: 1;
+}
