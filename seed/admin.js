@@ -1,0 +1,33 @@
+require('dotenv').config();
+const bcrypt = require('bcryptjs');
+const { User } = require('../models'); 
+
+async function seedAdmin() {
+  try {
+    const adminData = {
+      username: 'admin',
+      email: 'admin@admin.com',
+      password: 'admin123', 
+    };
+
+    const existingAdmin = await User.findOne({ where: { email: adminData.email } });
+    if (existingAdmin) {
+      console.log('Admin user already exists. No changes made.');
+      return;
+    }
+
+    const hashedPassword = await bcrypt.hash(adminData.password, 10);
+
+    await User.create({
+      username: adminData.username,
+      email: adminData.email,
+      password: hashedPassword,
+    });
+
+    console.log('Admin user created successfully.');
+  } catch (err) {
+    console.error('Error seeding admin user:', err);
+  }
+}
+
+seedAdmin();
