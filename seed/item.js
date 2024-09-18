@@ -1,4 +1,4 @@
-const {sequelize} = require('../config/database'); // adjust the path
+const sequelize = require('../config/database'); // adjust the path
 const Item = require('../models/Item');
 const Inventory = require('../models/Inventory');
 
@@ -21,7 +21,7 @@ async function seedReliefSupplies() {
 
     for (const itemData of reliefItems) {
       const item = await Item.create(itemData);
-      await Inventory.create({ quantity: 0, ItemId: item.id });
+      await Inventory.create({ quantity: Math.floor(Math.random() * 100), ItemId: item.id });
     }
 
     console.log('Relief supplies have been seeded successfully.');

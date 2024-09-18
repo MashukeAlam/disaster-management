@@ -26,9 +26,5 @@ const Assignment = sequelize.define('Assignments', {
   }
 });
 
-Assignment.belongsTo(User, { foreignKey: 'userId' });
-Assignment.belongsTo(Location, { foreignKey: 'locationId' });
-User.hasMany(Assignment, { foreignKey: 'userId' });
-Location.hasMany(Assignment, { foreignKey: 'locationId' });
 
 module.exports = Assignment;

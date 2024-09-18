@@ -1,14 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const passport = require('./config/auth');
 const flash = require('connect-flash');
 const cors = require('cors');
-const Assignment = require('./models/Assignment');
-
-
 const {sequelize, initializeDatabase} = require('./config/database');
+
+const { User, Donation, Crisis, Assignment, Location, Merchant, CrisisType, Inventory, Item } = require('./models');
+
 
 
 const app = express();
@@ -44,6 +43,7 @@ initializeDatabase()
     const userRouter = require('./routes/user');
     const locationRouter = require('./routes/location');
     const assignmentRouter = require('./routes/assignment');
+    const crisisRouter = require('./routes/crisis');
     
     app.use('/', registerRouter);
     app.use('/', authRouter);
@@ -51,10 +51,11 @@ initializeDatabase()
     app.use('/', userRouter);
     app.use('/', locationRouter);
     app.use('/', assignmentRouter);
+    app.use('/', crisisRouter);
 
     // fire server
     app.listen(3000, () => {
-      sequelize.sync();
+      // sequelize.sync();
       console.log(`Server running on http://localhost:${3000}`);
     });
   })

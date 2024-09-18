@@ -7,7 +7,9 @@
     "start": "node index.js",
     "seed:admin": "node seed/admin.js",
     "seed:item": "node seed/item.js",
-    "seed:locations": "node seed/location.js"
+    "seed:locations": "node seed/location.js",
+    "seed:crisis_type": "node seed/crisis_type.js",
+    "seed:merchant": "node seed/merchant.js"
 
 
   },
