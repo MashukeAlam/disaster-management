@@ -1,40 +1,27 @@
-<div class="container">
-  <h2>Home Component</h2>
-  
-  <!-- Add Crisis Button -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCrisisModal">
-    Add Crisis
-  </button>
 
-  <!-- Modal -->
-  <div class="modal fade" id="addCrisisModal" tabindex="-1" aria-labelledby="addCrisisModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addCrisisModalLabel">Add Crisis</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form id="addCrisisForm">
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="locationId" class="form-label">Location</label>
-              <input type="number" class="form-control" id="locationId" required>
-            </div>
-            <div class="mb-3">
-              <label for="crisisTypeId" class="form-label">Crisis Type</label>
-              <input type="number" class="form-control" id="crisisTypeId" required>
-            </div>
-            <div class="mb-3">
-              <label for="isApproved" class="form-label">Approved</label>
-              <input type="checkbox" id="isApproved">
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save Crisis</button>
-          </div>
-        </form>
+<div class="home-container">
+  <div class="left">
+    <h1 class="fade-in">Earthquake</h1>
+    <p class="fade-in">Thousands of people are suffering due to the devastation caused by the earthquake. Immediate help is needed to provide shelter, food, and medical assistance to those affected.</p>
+
+    <h1 class="fade-in">Drought</h1>
+    <p class="fade-in">Severe drought has left entire communities without access to clean water. Support is critical to ensure water distribution and aid to prevent further suffering.</p>
+
+    <h1 class="fade-in">Tsunami</h1>
+    <p class="fade-in">The massive tsunami displaced hundreds of families, leaving them in urgent need of housing, food, and psychological support.</p>
+
+    <h1 class="fade-in">Flood</h1>
+    <p class="fade-in">Unprecedented floods have destroyed homes and livelihoods. Your donations can help rebuild lives and provide immediate relief to those impacted.</p>
+
+    <h1 class="fade-in">Hurricane</h1>
+    <p class="fade-in">Communities devastated by hurricanes are struggling to recover. Join us in providing essential resources to rebuild homes and restore normalcy.</p>
+  </div>
+    <div class="right">
+      <div class="donation">
+        <p>20000 TK</p>
+        <span>has been donated</span>
+        <a href="/donation" class="donate-btn">Donate Now</a>
       </div>
     </div>
   </div>
-</div>
+  
