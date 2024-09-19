@@ -1,1 +1,67 @@
-<p>crisis works!</p>
+<div class="container mt-4">
+  <h2>All Crises</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Location</th>
+        <th>Crisis Type</th>
+        <th>Severity</th>
+        <th>Approved</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let crisis of crises">
+        <td>{{ crisis.id }}</td>
+        <td>{{ crisis.location?.name }}</td>
+        <td>{{ crisis.crisisType?.name }}</td>
+        <td>{{ crisis.severity }}</td>
+        <td>{{ crisis.isApproved ? 'Yes' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCrisisModal">
+    Add Crisis
+  </button>
+
+  <!-- Modal for adding new crisis -->
+  <div class="modal fade" id="addCrisisModal" tabindex="-1" aria-labelledby="addCrisisModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addCrisisModalLabel">Add Crisis</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="location" class="form-label">Location</label>
+              <select id="location" class="form-select" [(ngModel)]="newCrisis['locationId']" name="locationId">
+                <option *ngFor="let location of locations" [value]="location.id">{{ location?.name }}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="crisisType" class="form-label">Crisis Type</label>
+              <select id="crisisType" class="form-select" [(ngModel)]="newCrisis['crisisTypeId']" name="crisisTypeId">
+                <option *ngFor="let crisisType of crisisTypes" [value]="crisisType.id">{{ crisisType?.name }}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="severity" class="form-label">Severity</label>
+              <input id="severity" type="number" class="form-control" [(ngModel)]="newCrisis['severity']" name="severity" required>
+            </div>
+            <div class="form-check mb-3">
+              <input id="isApproved" type="checkbox" class="form-check-input" [(ngModel)]="newCrisis['isApproved']" name="isApproved">
+              <label for="isApproved" class="form-check-label">Is Approved</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addCrisis()" data-bs-dismiss="modal">Add Crisis</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

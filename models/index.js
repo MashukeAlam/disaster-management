@@ -18,8 +18,8 @@ Location.hasMany(Assignment, { foreignKey: 'locationId' });
 Donation.hasOne(User, { foreignKey: 'userId' });
 Donation.hasOne(Crisis, { foreignKey: 'crisisId' });
 Donation.hasOne(Merchant); 
-Crisis.belongsTo(Location, { foreignKey: 'locationId' });
-Crisis.belongsTo(CrisisType,{ foreignKey: 'crisisId' });
+Crisis.belongsTo(Location, { foreignKey: 'locationId', as: 'location' });
+Crisis.belongsTo(CrisisType,{ foreignKey: 'crisisTypeId', as: 'crisisType' });
 
 
 

@@ -23,6 +23,10 @@ const Crisis = sequelize.define('Crisis', {
   isApproved: {
     type: DataTypes.BOOLEAN,
     defaultValue: false
+  },
+  severity: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   }
 });
 
