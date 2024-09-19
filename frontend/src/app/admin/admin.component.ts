@@ -21,7 +21,7 @@ export class AdminComponent {
         this.user = data.user;
       },
       (error) => {
-        console.error('Not authenticated', error);
+        this.router.navigate(['/login']);
       }
     );
   }

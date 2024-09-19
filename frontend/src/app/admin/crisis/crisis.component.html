@@ -49,11 +49,15 @@
             </div>
             <div class="mb-3">
               <label for="severity" class="form-label">Severity</label>
-              <input id="severity" type="number" class="form-control" [(ngModel)]="newCrisis['severity']" name="severity" required>
+              <select id="severity" class="form-select" [(ngModel)]="newCrisis['severity']" name="severity" required>
+                <option [value]="1">Low</option>
+                <option [value]="2">Medium</option>
+                <option [value]="3">High</option>
+              </select>
             </div>
             <div class="form-check mb-3">
               <input id="isApproved" type="checkbox" class="form-check-input" [(ngModel)]="newCrisis['isApproved']" name="isApproved">
-              <label for="isApproved" class="form-check-label">Is Approved</label>
+              <label for="isApproved" class="form-check-label">Approved?</label>
             </div>
           </form>
         </div>
