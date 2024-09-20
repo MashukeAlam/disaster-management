@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   merchants: any[] = [];
   locations: any[] = [];
   crisisTypes: any[] = [];
+  totalDonated: number = 0;
 
   constructor(private authService: AuthService, private crisisService: CrisisService, private donationService: DonationService) {}
 
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
       this.fetchCrisesTypes();
       this.fetchLocations();
       this.fetchMerchants();
+      this.fetchTotal();
   }
 
   fetchCrises() {
@@ -71,6 +73,13 @@ export class HomeComponent implements OnInit {
     this.donationService.getAllMerchants().subscribe(
       (data) => {
         this.merchants = data;
+      }
+    )
+  }
+  fetchTotal(): void {
+    this.donationService.getTotalDonated().subscribe(
+      (data) => {
+        this.totalDonated = data.amount;
       }
     )
   }

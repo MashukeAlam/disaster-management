@@ -8,6 +8,7 @@ const Item = require('./Item');
 const Location = require('./Location');
 const Merchant = require('./Merchant');
 const User = require('./User');
+const Total = require('./Total');
 
 Item.hasOne(Inventory, { onDelete: 'CASCADE' });
 Inventory.belongsTo(Item);
@@ -33,4 +34,5 @@ module.exports = {
   Location,
   Merchant,
   User,
+  Total
 };

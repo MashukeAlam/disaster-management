@@ -6,7 +6,7 @@ const flash = require('connect-flash');
 const cors = require('cors');
 const {sequelize, initializeDatabase} = require('./config/database');
 
-const { User, Donation, Crisis, Assignment, Location, Merchant, CrisisType, Inventory, Item } = require('./models');
+const { User, Donation, Crisis, Assignment, Location, Merchant, CrisisType, Inventory, Item, Total } = require('./models');
 
 
 
