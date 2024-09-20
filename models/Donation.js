@@ -9,14 +9,6 @@ const Donation = sequelize.define('Donation', {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
-  userId: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    references: {
-      model: User,
-      key: 'id'
-    }
-  },
   crisisId: {
     type: DataTypes.INTEGER,
     allowNull: true,

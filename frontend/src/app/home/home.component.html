@@ -1,27 +1,132 @@
-
 <div class="home-container">
   <div class="left">
     <h1 class="fade-in">Earthquake</h1>
-    <p class="fade-in">Thousands of people are suffering due to the devastation caused by the earthquake. Immediate help is needed to provide shelter, food, and medical assistance to those affected.</p>
+    <p class="fade-in">
+      Thousands of people are suffering due to the devastation caused by the
+      earthquake. Immediate help is needed to provide shelter, food, and medical
+      assistance to those affected.
+    </p>
 
     <h1 class="fade-in">Drought</h1>
-    <p class="fade-in">Severe drought has left entire communities without access to clean water. Support is critical to ensure water distribution and aid to prevent further suffering.</p>
+    <p class="fade-in">
+      Severe drought has left entire communities without access to clean water.
+      Support is critical to ensure water distribution and aid to prevent
+      further suffering.
+    </p>
 
     <h1 class="fade-in">Tsunami</h1>
-    <p class="fade-in">The massive tsunami displaced hundreds of families, leaving them in urgent need of housing, food, and psychological support.</p>
+    <p class="fade-in">
+      The massive tsunami displaced hundreds of families, leaving them in urgent
+      need of housing, food, and psychological support.
+    </p>
 
     <h1 class="fade-in">Flood</h1>
-    <p class="fade-in">Unprecedented floods have destroyed homes and livelihoods. Your donations can help rebuild lives and provide immediate relief to those impacted.</p>
+    <p class="fade-in">
+      Unprecedented floods have destroyed homes and livelihoods. Your donations
+      can help rebuild lives and provide immediate relief to those impacted.
+    </p>
 
     <h1 class="fade-in">Hurricane</h1>
-    <p class="fade-in">Communities devastated by hurricanes are struggling to recover. Join us in providing essential resources to rebuild homes and restore normalcy.</p>
+    <p class="fade-in">
+      Communities devastated by hurricanes are struggling to recover. Join us in
+      providing essential resources to rebuild homes and restore normalcy.
+    </p>
   </div>
-    <div class="right">
-      <div class="donation">
-        <p>20000 TK</p>
-        <span>has been donated</span>
-        <a href="/donation" class="donate-btn">Donate Now</a>
+  <div class="right">
+    <div class="donation">
+      <p>20000 TK</p>
+      <span>has been donated</span>
+      <button
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#addDonationModal"
+      >
+        Donate Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for adding a new donation -->
+<div
+  class="modal fade"
+  id="addDonationModal"
+  tabindex="-1"
+  aria-labelledby="addDonationModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addDonationModalLabel">Add Donation</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- Amount input field -->
+          <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input
+              type="number"
+              id="amount"
+              class="form-control"
+              [(ngModel)]="newDonation['amount']"
+              name="amount"
+              required
+            />
+          </div>
+
+          <!-- Merchant selection dropdown -->
+          <div class="mb-3">
+            <label for="merchant" class="form-label">Merchant</label>
+            <select
+              id="merchant"
+              class="form-select"
+              [(ngModel)]="newDonation['merchantId']"
+              name="merchantId"
+              required
+            >
+              <option *ngFor="let merchant of merchants" [value]="merchant.id">
+                {{ merchant?.name }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Crisis selection dropdown (approved crises only) -->
+          <div class="mb-3">
+            <label for="crisis" class="form-label">Crisis</label>
+            <select
+              id="crisis"
+              class="form-select"
+              [(ngModel)]="newDonation['crisisId']"
+              name="crisisId"
+              required
+            >
+              <option *ngFor="let crisis of approvedCrises" [value]="crisis.id">
+                {{ crisis?.name }}
+              </option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="addDonation()"
+          data-bs-dismiss="modal"
+        >
+          Add Donation
+        </button>
       </div>
     </div>
   </div>
-  
+</div>

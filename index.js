@@ -44,6 +44,7 @@ initializeDatabase()
     const locationRouter = require('./routes/location');
     const assignmentRouter = require('./routes/assignment');
     const crisisRouter = require('./routes/crisis');
+    const donationRouter = require('./routes/donation');
     
     app.use('/', registerRouter);
     app.use('/', authRouter);
@@ -52,10 +53,12 @@ initializeDatabase()
     app.use('/', locationRouter);
     app.use('/', assignmentRouter);
     app.use('/', crisisRouter);
+    app.use('/', donationRouter);
 
     // fire server
     app.listen(3000, '0.0.0.0', () => {
-      // sequelize.sync();
+      // sequelize.sync({alter: true, force: true});
+      // sequelize.sync({alter: true, force: false});
       console.log(`Server running on http://localhost:${3000}`);
     });
   })

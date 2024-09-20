@@ -19,7 +19,7 @@ const User = sequelize.define('User', {
   isAdmin: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
-    defaultValue: false  // Default is not an admin
+    defaultValue: false 
   }
 });
 
