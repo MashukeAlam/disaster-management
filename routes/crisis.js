@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Crisis, CrisisType, Location } = require('../models');
+const ensureAuthenticated = require('../misc/ensureAuthenticated');
 
 router.get('/crises', async (req, res) => {
   try {
@@ -38,7 +39,7 @@ router.get('/crisisTypes', async (req, res) => {
 
 
 // Create a new crisis
-router.post('/crises', async (req, res) => {
+router.post('/crises', ensureAuthenticated, async (req, res) => {
   const { locationId, crisisTypeId, severity, isApproved } = req.body;
 
   console.log(req.body);

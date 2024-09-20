@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Assignment  = require('../models/Assignment'); 
+const ensureAuthenticated = require('../misc/ensureAuthenticated');
 
 // Get all assignments
 router.get('/assignments', async (req, res) => {
@@ -13,7 +14,7 @@ router.get('/assignments', async (req, res) => {
 });
 
 // Update assignment
-router.put('/assignments/:id', async (req, res) => {
+router.put('/assignments/:id', ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
   const { assignedTask, locationId } = req.body;
   
