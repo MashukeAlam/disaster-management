@@ -25,6 +25,30 @@ router.get('/crises', async (req, res) => {
   }
 });
 
+router.get('/approvedCrises', async (req, res) => {
+  try {
+    const crises = await Crisis.findAll({
+      where: {isApproved: true},
+      include: [
+        {
+          model: CrisisType,
+          as: 'crisisType',
+          attributes: ['id', 'name']
+        },
+        {
+          model: Location,
+          as: 'location',
+          attributes: ['id', 'name']
+        }
+      ]
+    });
+    res.status(200).json(crises);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 router.get('/crisisTypes', async (req, res) => {
   try {
     const crisisTypes = await CrisisType.findAll({
@@ -39,7 +63,7 @@ router.get('/crisisTypes', async (req, res) => {
 
 
 // Create a new crisis
-router.post('/crises', ensureAuthenticated, async (req, res) => {
+router.post('/crises', async (req, res) => {
   const { locationId, crisisTypeId, severity, isApproved } = req.body;
 
   console.log(req.body);

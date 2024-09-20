@@ -16,6 +16,10 @@ export class CrisisService {
   getAllCrises(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/crises`, { withCredentials: false });
   }
+  
+  getAllApprovedCrises(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/approvedCrises`, { withCredentials: false });
+  }
 
   getAllCrisisTypes(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/crisisTypes`, { withCredentials: false });
