@@ -108,7 +108,7 @@
               required
             >
               <option *ngFor="let crisis of approvedCrises" [value]="crisis.id">
-                {{ crisis?.name }}
+                {{ crisis?.location.name + ' ' + crisis?.crisisType.name}}
               </option>
             </select>
           </div>

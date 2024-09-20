@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrisisService } from '../crisis.service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { DonationService } from '../donation.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   locations: any[] = [];
   crisisTypes: any[] = [];
 
-  constructor(private authService: AuthService, private crisisService: CrisisService) {}
+  constructor(private authService: AuthService, private crisisService: CrisisService, private donationService: DonationService) {}
 
   newDonation: Partial<any> = {
     amount: null,
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
       this.fetchCrises();
       this.fetchCrisesTypes();
       this.fetchLocations();
+      this.fetchMerchants();
   }
 
   fetchCrises() {
@@ -65,8 +67,28 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  fetchMerchants(): void {
+    this.donationService.getAllMerchants().subscribe(
+      (data) => {
+        this.merchants = data;
+      }
+    )
+  }
 
-  addDonation() {}
+  addDonation() {
+    this.donationService.addDonation(this.newDonation).subscribe(
+      () => {
+        this.newDonation = {
+          amount: null,
+    merchantId: null,
+    crisisId: null,
+        }
+      },
+      (error) => {
+        console.error('Error adding crisis:', error);
+      }
+    );
+  }
 
 
 }

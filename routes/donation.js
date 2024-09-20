@@ -7,7 +7,6 @@ router.get('/donations',  async (req, res) => {
   try {
     const donations = await Donation.findAll({
       include: [
-        { model: User, attributes: ['id', 'name'] }, 
         { model: Crisis, attributes: ['id', 'name'] }, 
         { model: Merchant, attributes: ['id', 'name'] }
       ]
@@ -17,6 +16,15 @@ router.get('/donations',  async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching donations.' });
   }
 });
+
+router.get('/merchants', async (req, res) => {
+  try {
+    const merchants = await Merchant.findAll({});
+    res.status(200).json(merchants);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while fetching donations.' });
+  }
+})
 
 router.post('/donation',  async (req, res) => {
   const { amount, userId, crisisId, merchantId } = req.body;
