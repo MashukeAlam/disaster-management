@@ -1,0 +1,139 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #FF6B6B, #556270, #4ECDC4);
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.left,
+.right {
+    flex: 1;
+    padding: 20px;
+}
+
+.left {
+    text-align: left;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.donation {
+    text-align: center;
+}
+
+.donation p {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.donation span {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.donate-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FFD700;
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+.donate-btn:hover {
+    background-color: #FFB800;
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 1s both;
+  }
+  
+  .fade-in:nth-child(1) {
+    animation-delay: 0.5s;
+  }
+  
+  .fade-in:nth-child(2) {
+    animation-delay: 1s;
+  }
+  
+  .fade-in:nth-child(3) {
+    animation-delay: 1.5s;
+  }
+  
+  .fade-in:nth-child(4) {
+    animation-delay: 2s;
+  }
+  
+  .fade-in:nth-child(5) {
+    animation-delay: 2.5s;
+  }
+  
+  .fade-in:nth-child(6) {
+    animation-delay: 3s;
+  }
+  
+  .fade-in:nth-child(7) {
+    animation-delay: 3.5s;
+  }
+  
+  .fade-in:nth-child(8) {
+    animation-delay: 4s;
+  }
+  
+  .fade-in:nth-child(9) {
+    animation-delay: 4.5s;
+  }
+  
+  .fade-in:nth-child(10) {
+    animation-delay: 5s;
+  }
