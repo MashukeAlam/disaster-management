@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { DonationService } from '../donation.service';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,8 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService,
      private crisisService: CrisisService,
      private donationService: DonationService, 
-     private userService: UserService) {}
+     private userService: UserService,
+     private router: Router) {}
 
   newDonation: Partial<any> = {
     amount: null,
@@ -36,6 +38,11 @@ export class HomeComponent implements OnInit {
     username: null,
     email: null,
     password: null,
+  };
+
+  loginData: any = {
+    username: '',
+    password: '',
   };
 
   ngOnInit(): void {
@@ -137,6 +144,23 @@ export class HomeComponent implements OnInit {
         this.fetchTotalVolunteers();
       }
     )
+  }
+
+  loginUser() {
+    const { username, password } = this.loginData;
+
+    // Call the login method from AuthService
+    this.authService.login(username, password).subscribe(
+      (response) => {
+        console.log('Login successful:', response);
+        // Redirect to home or dashboard page after login
+        this.router.navigate(['/profile']);
+      },
+      (error) => {
+        console.error('Login failed:', error);
+        // Handle login failure (show error message to user, etc.)
+      }
+    );
   }
 
 
