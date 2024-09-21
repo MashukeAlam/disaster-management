@@ -149,16 +149,12 @@ export class HomeComponent implements OnInit {
   loginUser() {
     const { username, password } = this.loginData;
 
-    // Call the login method from AuthService
     this.authService.login(username, password).subscribe(
       (response) => {
-        console.log('Login successful:', response);
-        // Redirect to home or dashboard page after login
         this.router.navigate(['/profile']);
       },
       (error) => {
         console.error('Login failed:', error);
-        // Handle login failure (show error message to user, etc.)
       }
     );
   }
