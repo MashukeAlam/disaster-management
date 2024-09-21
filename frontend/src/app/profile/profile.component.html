@@ -1,6 +1,7 @@
 <div *ngIf="user; else notAuthenticated">
   <h1>Welcome, {{ user.username }}</h1>
-  <p>Email: {{ user.email }}</p>
+
+  <p>{{assignment}}</p>
     
   <button (click)="onLogout()">Logout</button>
 </div>

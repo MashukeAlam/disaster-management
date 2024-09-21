@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,18 +14,21 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfileComponent {
   user: any;
+  assignment: string = "You currently have no task assigned to you.";
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     this.authService.isAuthenticated().subscribe(
       (data) => {
         this.user = data.user;
+        this.getAssignment(this.user.id);
       },
       (error) => {
         console.error('Not authenticated', error);
       }
     );
+
   }
 
   onLogout() {
@@ -37,4 +41,16 @@ export class ProfileComponent {
       }
     );
   }
+
+  getAssignment(id: number) {
+    this.userService.getAssignment(id).subscribe(
+      (response) => {
+        if (response) {          
+          this.assignment = `You are assigned to do ${response.task} at ${response.Location.name}`;
+        }       
+      }
+    )
+  }
+
+
 }

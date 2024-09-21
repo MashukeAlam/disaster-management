@@ -2,12 +2,32 @@ const express = require('express');
 const router = express.Router();
 const Assignment  = require('../models/Assignment'); 
 const ensureAuthenticated = require('../misc/ensureAuthenticated');
+const { Location } = require('../models');
 
 // Get all assignments
 router.get('/assignments', async (req, res) => {
   try {
     const assignments = await Assignment.findAll();
     res.status(200).json(assignments);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get specific assignment by userId
+router.get('/assignments/:id', async (req, res) => {
+  try {
+    const {id} = req.params;
+    const assignment = await Assignment.findOne({
+      where: { userId: id },
+      include: [
+        {
+          model: Location, 
+          attributes: ['name'], 
+        },
+      ],
+    });    
+    res.status(200).json(assignment);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

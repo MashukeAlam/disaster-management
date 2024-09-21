@@ -30,6 +30,10 @@ export class UserService {
     return this.http.get<any>(`${this.baseUrl}/totalVolunteers`, { withCredentials: false });
   }
 
+  getAssignment(id: any): Observable<any> {    
+    return this.http.get<any>(`${this.baseUrl}/assignments/${id}`, {withCredentials: false});
+  }
+
   addUser(user: Partial<any>): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/register`, user);
   }
