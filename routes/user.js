@@ -17,4 +17,19 @@ router.get('/users', async (req, res) => {
   }
 });
 
+router.get('/totalVolunteers', async (req, res) => {
+  try {
+    const number = await User.count({
+      where: {
+        isAdmin: false
+      }
+    });
+    console.log(number);
+    
+    res.status(200).json(number);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 module.exports = router;

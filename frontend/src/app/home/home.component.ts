@@ -4,6 +4,7 @@ import { CrisisService } from '../crisis.service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { DonationService } from '../donation.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-home',
@@ -18,13 +19,23 @@ export class HomeComponent implements OnInit {
   locations: any[] = [];
   crisisTypes: any[] = [];
   totalDonated: number = 0;
+  totalVolunteers: number = 0;
 
-  constructor(private authService: AuthService, private crisisService: CrisisService, private donationService: DonationService) {}
+  constructor(private authService: AuthService,
+     private crisisService: CrisisService,
+     private donationService: DonationService, 
+     private userService: UserService) {}
 
   newDonation: Partial<any> = {
     amount: null,
     merchantId: null,
     crisisId: null,
+  };
+
+  newUser: Partial<any> = {
+    username: null,
+    email: null,
+    password: null,
   };
 
   ngOnInit(): void {
@@ -33,6 +44,7 @@ export class HomeComponent implements OnInit {
       this.fetchLocations();
       this.fetchMerchants();
       this.fetchTotal();
+      this.fetchTotalVolunteers();
   }
 
   fetchCrises() {
@@ -76,10 +88,23 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
   fetchTotal(): void {
     this.donationService.getTotalDonated().subscribe(
       (data) => {
+        console.log(data);
+        
         this.totalDonated = data.amount;
+      }
+    )
+  }
+
+  fetchTotalVolunteers(): void {
+    this.userService.getTotalVolunteers().subscribe(
+      (data) => {
+        console.log(data);
+        
+        this.totalVolunteers = data;
       }
     )
   }
@@ -87,16 +112,31 @@ export class HomeComponent implements OnInit {
   addDonation() {
     this.donationService.addDonation(this.newDonation).subscribe(
       () => {
+        this.fetchTotal();
         this.newDonation = {
           amount: null,
-    merchantId: null,
-    crisisId: null,
+          merchantId: null,
+          crisisId: null,
         }
       },
       (error) => {
         console.error('Error adding crisis:', error);
       }
     );
+  }
+
+  addUser() {
+    this.userService.addUser(this.newUser).subscribe(
+      (data) => {
+        console.log(data);
+        this.newUser = {
+          username: null,
+          email: null,
+          password: null,
+        };
+        this.fetchTotalVolunteers();
+      }
+    )
   }
 
 
