@@ -3,6 +3,7 @@ import { AuthService } from '../../auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AssignmentsService } from '../../assignments.service';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-volunteer',
@@ -12,16 +13,19 @@ import { AssignmentsService } from '../../assignments.service';
   styleUrl: './volunteer.component.scss'
 })
 export class VolunteerComponent implements OnInit {
+  isUserAdmin = false;
   users: any[] = [];
   locations: any[] = [];
   assignments: Map<number, any> = new Map<number, any>();
 
-  constructor(private authService: AuthService, private assignmentService: AssignmentsService) {}
+  constructor(private authService: AuthService, private assignmentService: AssignmentsService, private userService: UserService) {}
 
   ngOnInit(): void {
       this.fetchUsers();
       this.fetchLocations();
       this.getAssignments();
+      this.isUserAdmin = this.userService.getUser().isAdmin;
+      
   }
 
   fetchUsers(): void {

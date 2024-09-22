@@ -1,0 +1,80 @@
+<div class="container">
+    <h2>Inventory</h2>
+  
+    <!-- Inventory Table -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.name }}</td>
+          <td>{{ item.stock }}</td>
+          <td>
+            <!-- Button to open Add Stock (Purchase) modal -->
+            <button class="btn btn-primary" (click)="openPurchaseModal(item)">Add Stock</button>
+            
+            <!-- Button to open Use Stock (Spend) modal -->
+            <button class="btn btn-warning" (click)="openSpendModal(item)">Use Stock</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Add Stock Modal -->
+    <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="purchaseModalLabel">Add Stock for {{ selectedItem?.name }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="purchaseQuantity" class="form-label">Quantity</label>
+                <input name="quantity" type="number" class="form-control" id="purchaseQuantity" [(ngModel)]="purchaseQuantity" min="1" required>
+              </div>
+              <div class="mb-3">
+                <label for="purchasePrice" class="form-label">Price per Item</label>
+                <input name="price" type="number" class="form-control" id="purchasePrice" [(ngModel)]="purchasePrice" min="0.01" step="0.01" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="purchaseItem()">Add Stock</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Use Stock Modal -->
+    <div class="modal fade" id="spendModal" tabindex="-1" aria-labelledby="spendModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="spendModalLabel">Use Stock for {{ selectedItem?.name }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="spendQuantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="spendQuantity" [(ngModel)]="spendQuantity" min="1" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-warning" (click)="spendItem()">Use Stock</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

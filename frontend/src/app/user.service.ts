@@ -14,16 +14,18 @@ export class UserService {
     
   }
 
-  setUser(user: any) {    
-    this.currUser = user;
+  setUser(user: any) {
+    localStorage.setItem('currUser', JSON.stringify(user));
   }
 
   getUser() {
-    return this.currUser;
+    const storedUser = localStorage.getItem('currUser');
+    return storedUser ? JSON.parse(storedUser) : undefined;
   }
 
-  isAdmin() {    
-    return true;
+  isAdmin() {
+    const user = this.getUser();
+    return user?.isAdmin;
   }
 
   getTotalVolunteers(): Observable<any> {

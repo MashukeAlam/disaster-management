@@ -6,6 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { VolunteerComponent } from './admin/volunteer/volunteer.component';
 import { CrisisComponent } from './admin/crisis/crisis.component';
 import { ReportComponent } from './admin/report/report.component';
+import { InventoryComponent } from './admin/inventory/inventory.component';
 
 export const routes: Routes = [
   {
@@ -18,7 +19,11 @@ export const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    children: [
+      { path: 'volunteer', component: VolunteerComponent },
+      { path: 'inventory', component: InventoryComponent },
+    ] 
   },
   {
     path: 'admin',
@@ -26,7 +31,8 @@ export const routes: Routes = [
     children: [
       { path: 'volunteer', component: VolunteerComponent },
       { path: 'crisis', component: CrisisComponent },
-      { path: 'report', component: ReportComponent }
+      { path: 'report', component: ReportComponent },
+      { path: 'inventory', component: InventoryComponent },
     ] 
   }
 ];

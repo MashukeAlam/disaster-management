@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
 import { UserService } from '../user.service';
@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
   standalone: true,
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
 })
 export class ProfileComponent {
   user: any;
@@ -22,6 +22,8 @@ export class ProfileComponent {
     this.authService.isAuthenticated().subscribe(
       (data) => {
         this.user = data.user;
+        this.userService.setUser(this.user);
+        
         this.getAssignment(this.user.id);
       },
       (error) => {

@@ -7,6 +7,10 @@ const Item = sequelize.define('Item', {
     allowNull: false,
     unique: true,
   },
+  stock: {
+    type: DataTypes.FLOAT,
+    defaultValue: 0,
+  }
 });
 
 module.exports = Item;
