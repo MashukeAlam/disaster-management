@@ -1,19 +1,17 @@
 const express = require("express");
-const { Donation, User, Crisis, Merchant, Total } = require("../models");
+const { Donation, User, Crisis, Merchant, Total, Location, CrisisType } = require("../models");
 const createOrUpdateTotal = require("../misc/updateTotal");
 
 const router = express.Router();
 
 router.get("/donations", async (req, res) => {
   try {
-    const donations = await Donation.findAll({
-      include: [
-        { model: Crisis, attributes: ["id", "name"] },
-        { model: Merchant, attributes: ["id", "name"] },
-      ],
-    });
+    const donations = await Donation.findAll();
+
     res.status(200).json(donations);
   } catch (error) {
+    console.log(error);
+    
     res
       .status(500)
       .json({ error: "An error occurred while fetching donations." });

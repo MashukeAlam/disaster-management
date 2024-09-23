@@ -17,11 +17,9 @@ export class InventoryComponent implements OnInit {
   items: any[] = [];
   selectedItem: any = null;
   
-  // Variables for purchase modal
   purchaseQuantity: number = 0;
   purchasePrice: number = 0;
   
-  // Variables for spend modal
   spendQuantity: number = 0;
 
   constructor(private inventoryService: InventoryService) { }
@@ -73,6 +71,9 @@ export class InventoryComponent implements OnInit {
         itemId: this.selectedItem.id,
         quantity: this.spendQuantity
       };
+
+      console.log(data);
+      
       this.inventoryService.spendItem(data).subscribe(response => {
         this.loadItems(); // Reload items to update stock
         window.bootstrap.Modal.getInstance(document.getElementById('spendModal')).hide();

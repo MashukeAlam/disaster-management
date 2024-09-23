@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class InventoryService {
 
-  private apiUrl = 'http://localhost:3000'; // Change to your API URL
+  private apiUrl = 'http://localhost:3000'; 
 
   constructor(private http: HttpClient) { }
 

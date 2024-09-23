@@ -12,7 +12,7 @@ const Transaction = sequelize.define('Transaction', {
     },
     totalPrice: {
       type: DataTypes.FLOAT,
-      allowNull: false,
+      allowNull: true,
     }
   });
 

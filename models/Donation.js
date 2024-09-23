@@ -9,6 +9,7 @@ const Donation = sequelize.define('Donation', {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
+
   crisisId: {
     type: DataTypes.INTEGER,
     allowNull: true,
@@ -17,6 +18,7 @@ const Donation = sequelize.define('Donation', {
       key: 'id'
     }
   },
+  
   merchantId: {
     type: DataTypes.INTEGER,
     allowNull: false,

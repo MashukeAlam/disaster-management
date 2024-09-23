@@ -46,6 +46,7 @@ initializeDatabase()
     const crisisRouter = require('./routes/crisis');
     const donationRouter = require('./routes/donation');
     const itemRouter = require('./routes/item');
+    const reportRouter = require('./routes/report');
     
     app.use('/', registerRouter);
     app.use('/', authRouter);
@@ -56,6 +57,7 @@ initializeDatabase()
     app.use('/', crisisRouter);
     app.use('/', donationRouter);
     app.use('/', itemRouter);
+    app.use('/', reportRouter);
 
     // fire server
     app.listen(3000, '0.0.0.0', () => {

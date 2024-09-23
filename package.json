@@ -10,8 +10,6 @@
     "seed:locations": "node seed/location.js",
     "seed:crisis_type": "node seed/crisis_type.js",
     "seed:merchant": "node seed/merchant.js"
-
-
   },
   "author": "MashukeAlam",
   "license": "ISC",
@@ -25,6 +23,8 @@
     "mysql2": "^3.11.3",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
+    "pdfkit": "^0.15.0",
+    "pdfkit-table": "^0.1.99",
     "sequelize": "^6.37.3"
   }
 }

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Item } = require('../models');
+const { Item, Transaction } = require('../models');
 
 router.get('/items', async (req, res) => {
     try {
@@ -13,7 +13,6 @@ router.get('/items', async (req, res) => {
   
 router.post('/purchase', async (req, res) => {
     const { itemId, quantity, price } = req.body;
-    // console.log(req.body);
     
     try {
         const item = await Item.findByPk(itemId);
@@ -34,13 +33,15 @@ router.post('/purchase', async (req, res) => {
         });
 
         res.status(200).send({ message: 'Purchase recorded successfully', item });
-    } catch (error) {
+    } catch (error) {        
         res.status(500).send({ message: 'Error processing purchase', error });
     }
 });
 
 router.post('/spend', async (req, res) => {
     const { itemId, quantity } = req.body;
+    console.log(req.body);
+    
     try {
         const item = await Item.findByPk(itemId);
         if (!item || item.stock < quantity) {
@@ -56,11 +57,13 @@ router.post('/spend', async (req, res) => {
             itemId,
             type: 'spend',
             quantity,
-            totalPrice: item.price * quantity,
+            totalPrice: 0
         });
 
         res.status(200).send({ message: 'Spend recorded successfully', item });
     } catch (error) {
+        console.log(error);
+        
         res.status(500).send({ message: 'Error processing spend', error });
     }
 });

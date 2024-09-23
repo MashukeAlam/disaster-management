@@ -17,7 +17,7 @@ Assignment.belongsTo(User, { foreignKey: 'userId' });
 Assignment.belongsTo(Location, { foreignKey: 'locationId' });
 User.hasOne(Assignment, { foreignKey: 'userId', index: false});
 Location.hasMany(Assignment, { foreignKey: 'locationId' });
-Donation.hasOne(Crisis, { foreignKey: 'crisisId' });
+Donation.hasOne(Crisis, { foreignKey: 'crisisId'});
 Donation.hasOne(Merchant); 
 Crisis.belongsTo(Location, { foreignKey: 'locationId', as: 'location' });
 Crisis.belongsTo(CrisisType,{ foreignKey: 'crisisTypeId', as: 'crisisType' });
@@ -36,5 +36,6 @@ module.exports = {
   Location,
   Merchant,
   User,
-  Total
+  Total,
+  Transaction
 };
