@@ -28,7 +28,9 @@ or
 ```cd frontend && npm i```
 - Run the seeds for backend:
 - Please run the seed for admin twice.
+
 ```npm run seed:admin```
+
 ```npm run seed:admin```
 
 ```npm run seed:item```
