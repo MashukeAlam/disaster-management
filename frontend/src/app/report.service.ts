@@ -11,15 +11,15 @@ export class ReportService {
   constructor(private http: HttpClient) { }
 
   getDonationReport(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/donationReport`, {responseType: 'blob'});
+    return this.http.get(`${this.baseUrl}/donationReport`, {responseType: 'blob', withCredentials: true});
   }
 
   getExpenseReport(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/expenseReport`, {responseType: 'blob'});
+    return this.http.get(`${this.baseUrl}/expenseReport`, {responseType: 'blob', withCredentials: true});
   }
 
   getInventoryReport(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/inventoryReport`, {responseType: 'blob'});
+    return this.http.get(`${this.baseUrl}/inventoryReport`, {responseType: 'blob', withCredentials: true});
   }
 
 

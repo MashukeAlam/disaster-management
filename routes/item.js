@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { Item, Transaction } = require('../models');
+const ensureAdmin = require('../misc/ensureAdmin');
+const ensureAuthenticated = require('../misc/ensureAuthenticated');
 
 router.get('/items', async (req, res) => {
     try {
@@ -11,7 +13,7 @@ router.get('/items', async (req, res) => {
     }
   });
   
-router.post('/purchase', async (req, res) => {
+router.post('/purchase', ensureAuthenticated, async (req, res) => {
     const { itemId, quantity, price } = req.body;
     
     try {
@@ -38,7 +40,7 @@ router.post('/purchase', async (req, res) => {
     }
 });
 
-router.post('/spend', async (req, res) => {
+router.post('/spend', ensureAuthenticated, async (req, res) => {
     const { itemId, quantity } = req.body;
     console.log(req.body);
     

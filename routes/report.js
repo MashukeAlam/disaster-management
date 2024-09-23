@@ -6,7 +6,7 @@ const fs = require('fs');
 const ensureAdmin = require('../misc/ensureAdmin');
 const { Op } = require('sequelize');
 
-router.get('/donationReport', async (req, res) => {  
+router.get('/donationReport', ensureAdmin, async (req, res) => {  
   try {
     const donations = await Donation.findAll();   
     
@@ -106,7 +106,7 @@ function getTodayDate() {
   return today.toISOString().split('T')[0]; // format to YYYY-MM-DD
 }
 
-router.get('/expenseReport', async (req, res) => {
+router.get('/expenseReport', ensureAdmin, async (req, res) => {
   try {
     // Fetch today's spend transactions
     const todayDate = getTodayDate();
@@ -173,7 +173,7 @@ router.get('/expenseReport', async (req, res) => {
 });
 
 
-router.get('/inventoryReport', async (req, res) => {
+router.get('/inventoryReport', ensureAdmin, async (req, res) => {
   try {
     const items = await Item.findAll();
 

@@ -1,6 +1,4 @@
-function ensureAdmin(req, res, next) {
-  console.log(req.isAuthenticated() , req.user);
-  
+function ensureAdmin(req, res, next) {  
   if (req.isAuthenticated() && req.user.isAdmin) {
     return next();
   }

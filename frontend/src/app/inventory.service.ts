@@ -16,7 +16,7 @@ export class InventoryService {
   }
 
   purchaseItem(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/purchase`, data);
+    return this.http.post(`${this.apiUrl}/purchase`, data, {withCredentials: true});
   }
 
   spendItem(data: any): Observable<any> {
