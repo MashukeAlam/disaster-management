@@ -14,5 +14,13 @@ export class ReportService {
     return this.http.get(`${this.baseUrl}/donationReport`, {responseType: 'blob'});
   }
 
+  getExpenseReport(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/expenseReport`, {responseType: 'blob'});
+  }
+
+  getInventoryReport(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/inventoryReport`, {responseType: 'blob'});
+  }
+
 
 }

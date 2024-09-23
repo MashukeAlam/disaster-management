@@ -31,4 +31,44 @@ export class ReportComponent {
     });
   }
 
+  downloadExpense(): void {
+    this.reportService.getExpenseReport().subscribe(blob => {
+      const fileName = `ExpenseReport-${Date.now()}.pdf`;
+
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      // Clean up
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    });
+  }
+
+  downloadInventory(): void {
+    this.reportService.getInventoryReport().subscribe(blob => {
+      const fileName = `ExpenseReport-${Date.now()}.pdf`;
+
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      // Clean up
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    });
+  }
+
 }
