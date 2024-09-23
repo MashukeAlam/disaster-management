@@ -53,7 +53,11 @@ async function seedAdmin() {
   }
 }
 
-seedAdmin();
+initializeDatabase().then(() => {
+  seedAdmin();
+}).catch(err => {
+  console.error('Failed to initialize database:', err);
+});
 
 /*
   If you want some non admin users, run the following:

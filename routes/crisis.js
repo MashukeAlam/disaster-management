@@ -28,7 +28,7 @@ router.get('/crises', async (req, res) => {
 router.get('/approvedCrises', async (req, res) => {
   try {
     const crises = await Crisis.findAll({
-      where: {isApproved: true},
+      where: { isApproved: true },
       include: [
         {
           model: CrisisType,
@@ -67,7 +67,7 @@ router.post('/crises', async (req, res) => {
   const { locationId, crisisTypeId, severity, isApproved } = req.body;
 
   console.log(req.body);
-  
+
 
   if (!locationId || !crisisTypeId) {
     return res.status(400).json({ message: 'Location ID and Crisis Type ID are required.' });
@@ -80,5 +80,25 @@ router.post('/crises', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+router.put('/crises/:id/approve', async (req, res) => {
+  const crisisId = req.params.id;
+
+  try {
+    const crisis = await Crisis.findByPk(crisisId);
+    if (!crisis) {
+      return res.status(404).json({ message: 'Crisis not found.' });
+    }
+
+    crisis.isApproved = true;
+    await crisis.save();
+
+    res.status(200).json({ message: 'Crisis approved successfully.', crisis });
+  } catch (error) { res.status(500).json({ message: error.message }); }
+});
+
+
+
+
 
 module.exports = router;

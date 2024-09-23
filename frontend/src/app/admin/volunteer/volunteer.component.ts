@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AssignmentsService } from '../../assignments.service';
 import { UserService } from '../../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-volunteer',
@@ -18,14 +19,14 @@ export class VolunteerComponent implements OnInit {
   locations: any[] = [];
   assignments: Map<number, any> = new Map<number, any>();
 
-  constructor(private authService: AuthService, private assignmentService: AssignmentsService, private userService: UserService) {}
+  constructor(private authService: AuthService, private assignmentService: AssignmentsService, private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
       this.fetchUsers();
       this.fetchLocations();
       this.getAssignments();
       this.isUserAdmin = this.userService.getUser().isAdmin;
-      
+      this.router.navigate([this.router.url]);
   }
 
   fetchUsers(): void {

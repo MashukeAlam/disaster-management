@@ -21,6 +21,14 @@ export class HomeComponent implements OnInit {
   crisisTypes: any[] = [];
   totalDonated: number = 0;
   totalVolunteers: number = 0;
+  crises: any[] = [];
+
+  newCrisis: Partial<any> = {
+    locationId: null,
+    crisisTypeId: null,
+    isApproved: false,
+    severity: null
+  };
 
   constructor(private authService: AuthService,
      private crisisService: CrisisService,
@@ -155,6 +163,18 @@ export class HomeComponent implements OnInit {
       },
       (error) => {
         console.error('Login failed:', error);
+      }
+    );
+  }
+
+  addCrisis() {
+    this.crisisService.addCrisis(this.newCrisis).subscribe(
+      () => {
+        this.fetchCrises(); 
+        this.newCrisis = { locationId: null, crisisTypeId: null, isApproved: false, severity: null };
+      },
+      (error) => {
+        console.error('Error adding crisis:', error);
       }
     );
   }

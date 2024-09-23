@@ -8,6 +8,7 @@
         <th>Crisis Type</th>
         <th>Severity</th>
         <th>Approved</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,10 @@
         <td>{{ crisis.crisisType?.name }}</td>
         <td>{{ crisis.severity }}</td>
         <td>{{ crisis.isApproved ? 'Yes' : 'No' }}</td>
+        <td>
+          <!-- Show 'Approve' button only if crisis is not approved -->
+          <button *ngIf="!crisis.isApproved" class="btn btn-success btn-sm" (click)="approveCrisis(crisis.id)">Approve</button>
+        </td>
       </tr>
     </tbody>
   </table>

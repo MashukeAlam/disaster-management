@@ -53,7 +53,7 @@ export class ReportComponent {
 
   downloadInventory(): void {
     this.reportService.getInventoryReport().subscribe(blob => {
-      const fileName = `ExpenseReport-${Date.now()}.pdf`;
+      const fileName = `InventoryReport-${Date.now()}.pdf`;
 
       const url = window.URL.createObjectURL(blob);
 

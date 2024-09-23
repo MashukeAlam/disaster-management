@@ -25,6 +25,10 @@ export class ProfileComponent {
         this.userService.setUser(this.user);
         
         this.getAssignment(this.user.id);
+
+        if(this.user.isAdmin) {
+          this.router.navigate(['/admin']);
+        }
       },
       (error) => {
         console.error('Not authenticated', error);

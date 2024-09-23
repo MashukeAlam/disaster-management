@@ -76,6 +76,12 @@ export class CrisisComponent implements OnInit {
     );
   }
 
+  approveCrisis(crisisId: number) {
+    this.crisisService.approveCrisis(crisisId).subscribe(
+      () => {}
+    );
+  }
+
   openModal() {
     const modal = document.getElementById('addCrisisModal');
     if (modal) {

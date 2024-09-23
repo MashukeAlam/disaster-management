@@ -28,4 +28,8 @@ export class CrisisService {
   addCrisis(crisis: Partial<any>): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/crises`, crisis);
   }
+
+  approveCrisis(id: number): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/crises/${id}/approve`, { withCredentials: true });
+  }
 }

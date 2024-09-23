@@ -31,13 +31,16 @@
       Communities devastated by hurricanes are struggling to recover. Join us in
       providing essential resources to rebuild homes and restore normalcy.
     </p>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCrisisModal">
+      Add Crisis
+    </button>
   </div>
   <div class="right">
     <div class="donation">
       <h1>{{totalDonated}} TK</h1>
       <p>has already been donated</p>
       <button
-        class="btn btn-primary"
+        class="btn btn-warning"
         data-bs-toggle="modal"
         data-bs-target="#addDonationModal"
       >
@@ -46,16 +49,17 @@
     </div>
     <div class="donation">
       <h1>{{totalVolunteers}} </h1>
-      <p>superheros are helping people</p>
+      <p>superheros are helping people <a href="/volunteer">Get to know volunteers</a></p>
       <button
-        class="btn btn-primary"
+        class="btn btn-warning"
         data-bs-toggle="modal"
         data-bs-target="#addUserModal"
       >
         Join as volunteer
       </button>
       <button
-        class="btn btn-primary"
+      style="margin-left: 0.5rem;"
+        class="btn btn-warning"
         data-bs-toggle="modal"
         data-bs-target="#loginModal"
       >
@@ -289,3 +293,46 @@
   </div>
 </div>
 
+<!-- Modal for adding new crisis -->
+<div class="modal fade" id="addCrisisModal" tabindex="-1" aria-labelledby="addCrisisModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCrisisModalLabel">Add Crisis</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <select id="location" class="form-select" [(ngModel)]="newCrisis['locationId']" name="locationId">
+              <option *ngFor="let location of locations" [value]="location.id">{{ location?.name }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="crisisType" class="form-label">Crisis Type</label>
+            <select id="crisisType" class="form-select" [(ngModel)]="newCrisis['crisisTypeId']" name="crisisTypeId">
+              <option *ngFor="let crisisType of crisisTypes" [value]="crisisType.id">{{ crisisType?.name }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="severity" class="form-label">Severity</label>
+            <select id="severity" class="form-select" [(ngModel)]="newCrisis['severity']" name="severity" required>
+              <option [value]="1">Low</option>
+              <option [value]="2">Medium</option>
+              <option [value]="3">High</option>
+            </select>
+          </div>
+          <div class="form-check mb-3">
+            <input id="isApproved" type="checkbox" class="form-check-input" [(ngModel)]="newCrisis['isApproved']" name="isApproved">
+            <label for="isApproved" class="form-check-label">Approved?</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addCrisis()" data-bs-dismiss="modal">Add Crisis</button>
+      </div>
+    </div>
+  </div>
+</div>

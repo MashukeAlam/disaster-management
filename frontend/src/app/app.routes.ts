@@ -14,6 +14,10 @@ export const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'volunteer',
+    component: VolunteerComponent
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
