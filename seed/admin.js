@@ -1,20 +1,37 @@
-require('dotenv').config();
-const bcrypt = require('bcryptjs');
-const User = require('../models/User'); 
-const {sequelize} = require('../config/database');
+require("dotenv").config();
+const bcrypt = require("bcryptjs");
+const User = require("../models/User");
+const { sequelize } = require("../config/database");
+const {
+  User,
+  Donation,
+  Crisis,
+  Assignment,
+  Location,
+  Merchant,
+  CrisisType,
+  Inventory,
+  Item,
+  Total,
+  Transaction,
+} = require("./models");
 
 async function seedAdmin() {
   try {
     const adminData = {
-      username: 'admin',
-      email: 'admin@admin.com',
-      password: 'admin123', 
-      isAdmin: true
+      username: "admin",
+      email: "admin@admin.com",
+      password: "admin123",
+      isAdmin: true,
     };
 
-    const existingAdmin = await User.findOne({ where: { email: adminData.email } });
+    sequelize.sync({ alter: true, force: false });
+
+    const existingAdmin = await User.findOne({
+      where: { email: adminData.email },
+    });
     if (existingAdmin) {
-      console.log('Admin user already exists. No changes made.');
+      console.log("Admin user already exists. No changes made.");
       return;
     }
 
@@ -24,13 +41,14 @@ async function seedAdmin() {
       username: adminData.username,
       email: adminData.email,
       password: hashedPassword,
-      isAdmin: adminData.isAdmin
+      isAdmin: adminData.isAdmin,
     });
 
-    console.log('Admin user created successfully.');
+    console.log("Admin user created successfully.");
+    await sequelize.close();
     return;
   } catch (err) {
-    console.error('Error seeding admin user:', err);
+    console.error("Error seeding admin user:", err);
     return;
   }
 }
@@ -174,4 +192,3 @@ curl --request POST \
   --data password=123
 
 */
-
