@@ -66,8 +66,6 @@ router.get('/crisisTypes', async (req, res) => {
 router.post('/crises', async (req, res) => {
   const { locationId, crisisTypeId, severity, isApproved } = req.body;
 
-  console.log(req.body);
-
 
   if (!locationId || !crisisTypeId) {
     return res.status(400).json({ message: 'Location ID and Crisis Type ID are required.' });

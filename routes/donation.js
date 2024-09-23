@@ -10,7 +10,6 @@ router.get("/donations", async (req, res) => {
 
     res.status(200).json(donations);
   } catch (error) {
-    console.log(error);
     
     res
       .status(500)
@@ -47,7 +46,6 @@ router.get("/merchants", async (req, res) => {
 
 router.post("/donation", async (req, res) => {
   const { amount, userId, crisisId, merchantId } = req.body;
-  console.log(req.body);
 
   try {
     if (!amount || !merchantId) {
@@ -67,7 +65,6 @@ router.post("/donation", async (req, res) => {
 
     res.status(201).json(newDonation);
   } catch (error) {
-    console.log(error);
 
     res
       .status(500)

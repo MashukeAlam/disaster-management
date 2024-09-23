@@ -38,13 +38,10 @@ router.put('/assignments/:id', ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
   const { assignedTask, locationId } = req.body;
   
-  console.log(id, assignedTask, locationId);
   
   try {
 
-    console.log("here");
     const assignment = await Assignment.findOne({ where: { userId: id } });
-    console.log(assignment);
     
     if (!assignment) {
       

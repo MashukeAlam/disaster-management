@@ -72,7 +72,6 @@ export class InventoryComponent implements OnInit {
         quantity: this.spendQuantity
       };
 
-      console.log(data);
       
       this.inventoryService.spendItem(data).subscribe(response => {
         this.loadItems(); // Reload items to update stock

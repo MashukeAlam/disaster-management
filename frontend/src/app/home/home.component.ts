@@ -65,7 +65,6 @@ export class HomeComponent implements OnInit {
   fetchCrises() {
     this.crisisService.getAllApprovedCrises().subscribe(
       (data) => {
-        console.log(data);
         
         this.approvedCrises = data;
       },
@@ -79,7 +78,6 @@ export class HomeComponent implements OnInit {
     this.crisisService.getAllCrisisTypes().subscribe(
       (data) => {
         this.crisisTypes = data;
-        console.log(data);
         
       },
       (error) => {
@@ -107,7 +105,6 @@ export class HomeComponent implements OnInit {
   fetchTotal(): void {
     this.donationService.getTotalDonated().subscribe(
       (data) => {
-        console.log(data);
         
         this.totalDonated = data.amount;
       }
@@ -117,7 +114,6 @@ export class HomeComponent implements OnInit {
   fetchTotalVolunteers(): void {
     this.userService.getTotalVolunteers().subscribe(
       (data) => {
-        console.log(data);
         
         this.totalVolunteers = data;
       }
@@ -143,7 +139,6 @@ export class HomeComponent implements OnInit {
   addUser() {
     this.userService.addUser(this.newUser).subscribe(
       (data) => {
-        console.log(data);
         this.newUser = {
           username: null,
           email: null,

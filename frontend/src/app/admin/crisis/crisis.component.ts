@@ -3,6 +3,7 @@ import { CrisisService } from '../../crisis.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crisis',
@@ -23,7 +24,7 @@ export class CrisisComponent implements OnInit {
     severity: null
   };
 
-  constructor(private crisisService: CrisisService, private authService: AuthService) {}
+  constructor(private crisisService: CrisisService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.fetchCrises();
@@ -46,7 +47,6 @@ export class CrisisComponent implements OnInit {
     this.crisisService.getAllCrisisTypes().subscribe(
       (data) => {
         this.crisisTypes = data;
-        console.log(data);
         
       },
       (error) => {
@@ -78,7 +78,9 @@ export class CrisisComponent implements OnInit {
 
   approveCrisis(crisisId: number) {
     this.crisisService.approveCrisis(crisisId).subscribe(
-      () => {}
+      (response) => {
+        this.router.navigate([this.router.url])
+      }
     );
   }
 

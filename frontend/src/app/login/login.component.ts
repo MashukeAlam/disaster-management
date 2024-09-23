@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {    
     this.authService.isAuthenticated().subscribe(
       (data) => {
-        console.log(data);
         this.router.navigate(['/profile']);
       },
       (error) => {
@@ -36,7 +35,6 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
-        console.log(response['user'].isAdmin);
 
         if (response['user'].isAdmin) {
           this.router.navigate(['/admin']);

@@ -7,13 +7,11 @@ const { where } = require('sequelize');
 
 router.post('/register', async (req, res) => {
   const {username, email, password} = req.body;
-  console.log(req.body);
   
 
   if (!username || !email || !password) return res.status(400).json({message: 'All fields are required.'});
 
   const user = await User.findOne({where: {email}});
-  console.log(user);
   
   if (user) return res.status(400).json({ message: 'User with same name exists!' });
 

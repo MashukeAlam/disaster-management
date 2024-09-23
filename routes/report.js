@@ -43,10 +43,7 @@ router.get('/donationReport', ensureAdmin, async (req, res) => {
     
     crises.forEach(crisis => {
       crisesMap.set(crisis.id, [crisis.crisisType.name, crisis.location.name]);
-    });
-
-    console.log(crisesMap);
-    
+    });    
 
     const doc = new PDFDocument();
     const fileName = `DonationReport-${Date.now()}.pdf`;
@@ -83,7 +80,6 @@ router.get('/donationReport', ensureAdmin, async (req, res) => {
     stream.on('finish', () => {
       res.download(fileName, (err) => {
         if (err) {
-          console.log(err);
           
         } else{
           
@@ -93,7 +89,6 @@ router.get('/donationReport', ensureAdmin, async (req, res) => {
     });
 
   } catch (error) {    
-    console.log(error);
     
     res
       .status(500)

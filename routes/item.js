@@ -13,7 +13,7 @@ router.get('/items', async (req, res) => {
     }
   });
   
-router.post('/purchase', ensureAuthenticated, async (req, res) => {
+router.post('/purchase', async (req, res) => {
     const { itemId, quantity, price } = req.body;
     
     try {
@@ -40,9 +40,8 @@ router.post('/purchase', ensureAuthenticated, async (req, res) => {
     }
 });
 
-router.post('/spend', ensureAuthenticated, async (req, res) => {
+router.post('/spend', async (req, res) => {
     const { itemId, quantity } = req.body;
-    console.log(req.body);
     
     try {
         const item = await Item.findByPk(itemId);
@@ -64,7 +63,6 @@ router.post('/spend', ensureAuthenticated, async (req, res) => {
 
         res.status(200).send({ message: 'Spend recorded successfully', item });
     } catch (error) {
-        console.log(error);
         
         res.status(500).send({ message: 'Error processing spend', error });
     }

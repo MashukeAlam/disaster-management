@@ -24,7 +24,6 @@ router.get('/totalVolunteers', async (req, res) => {
         isAdmin: false
       }
     });
-    console.log(number);
     
     res.status(200).json(number);
   } catch (err) {
