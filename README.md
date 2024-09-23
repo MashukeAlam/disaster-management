@@ -3,9 +3,12 @@
 ##  Steps to follow in local system
 - Clone the repo:
 ```git clone https://github.com/MashukeAlam/disaster-management.git```
+
 ```cd disaster-management```
 - Fill in the environment variables
+
 ```cp env.sample .env```
+
 -- Sample .env
 ```DB_NAME=disaster
 DB_USER=root
@@ -25,11 +28,17 @@ or
 ```cd frontend && npm i```
 - Run the seeds for backend:
 ```npm run seed:admin```
+
 ```npm run seed:item```
+
 ```npm run seed:locations```
+
 ```npm run seed:crisis_type```
+
 ```npm run seed:merchant```
 - Start the servers:
 To continue without building Angular:
+
 ```npm start```
+
 ```cd frontend && ng serve```
